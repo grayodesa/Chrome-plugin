@@ -5,6 +5,7 @@ var pollInterval = 1000*600; //10 min
 var requestTimeout = 1000*2; //5 sec
 var InboxUrl = "http://forum.searchengines.ru/private.php";
 var requestTimerId;
+var unread_count = "?";
 
 function init() {
   canvas = document.getElementById('canvas');
@@ -29,10 +30,10 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.open('GET', 'http://forum.searchengines.ru/pmunread.php', true);
 xmlhttp.onreadystatechange = function() {
   if (xmlhttp.readyState == 4) {
-     if(xmlhttp.status == 200) {
-        var unread_count = xmlhttp.responseText;
-        chrome.browserAction.setBadgeText ({text: unread_count});
+     if(xmlhttp.status == 200 && xmlhttp.responseText != "") {
+        unread_count = xmlhttp.responseText;
          }
+         chrome.browserAction.setBadgeText ({text: unread_count});
   }
 };
 xmlhttp.send(null);

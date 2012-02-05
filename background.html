@@ -1,0 +1,58 @@
+<html>
+<head>
+	<script>
+var pollInterval = 1000*600; //10 min
+var requestTimeout = 1000*2; //5 sec
+var InboxUrl = "http://forum.searchengines.ru/private.php";
+var requestTimerId;
+
+function init() {
+  canvas = document.getElementById('canvas');
+  loggedInImage = document.getElementById('logged_in');
+  canvasContext = canvas.getContext('2d');
+
+  chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
+  chrome.browserAction.setIcon({path: "unread_icon.png"});
+
+  getInboxcount();
+}
+
+function scheduleRequest() {
+  if (requestTimerId) {
+    window.clearTimeout(requestTimerId);
+  }
+  requestTimerId = window.setTimeout(getInboxcount, pollInterval);
+}
+
+function getInboxcount() {
+var xmlhttp = getXmlHttp()
+xmlhttp.open('GET', 'http://forum.searchengines.ru/pmunread.php', true);
+xmlhttp.onreadystatechange = function() {
+  if (xmlhttp.readyState == 4) {
+     if(xmlhttp.status == 200) {
+        unread_count = xmlhttp.responseText;
+        chrome.browserAction.setBadgeText ({text: unread_count});
+         }
+  }
+};
+xmlhttp.send(null);
+}
+
+function goToInbox() {
+  chrome.tabs.getAllInWindow(undefined, function(tabs) {
+    for (var i = 0, tab; tab = tabs[i]; i++) {
+      if (tab.url && InboxUrl) {
+        chrome.tabs.update(tab.id, {selected: true});
+        return;
+      }
+    }
+    chrome.tabs.create({url: InboxUrl});
+  });
+}
+	</script>
+</head>
+<body onload="init()">
+	<img id="logged_in" src="unread_icon.png">
+<canvas id="canvas" width="16" height="16">
+	
+</body>

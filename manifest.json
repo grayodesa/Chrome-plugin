@@ -1,0 +1,7 @@
+{
+	"name": "Личные сообщения",
+	"version": "0.01",
+	"background_page": "background.html",
+	"permissions": [
+	"tabs", "http://forum.searchengines.ru"],
+}

@@ -1,7 +1,12 @@
 {
 	"name": "Личные сообщения",
-	"version": "0.01",
+	"version": "1",
 	"background_page": "background.html",
+	"browser_action": {
+		"default_icon": "unread_icon.png",
+		"default_title": "Личные сообщения"
+	},
 	"permissions": [
-	"tabs", "http://forum.searchengines.ru"],
+	"cookies", "tabs", "http://forum.searchengines.ru"
+	]
 }

@@ -25,7 +25,7 @@ function scheduleRequest() {
 }
 
 function getInboxcount() {
-var xmlhttp = getXmlHttp()
+var xmlhttp = new XMLHttpRequest();
 xmlhttp.open('GET', 'http://forum.searchengines.ru/pmunread.php', true);
 xmlhttp.onreadystatechange = function() {
   if (xmlhttp.readyState == 4) {
@@ -39,16 +39,20 @@ xmlhttp.send(null);
 }
 
 function goToInbox() {
-  chrome.tabs.getAllInWindow(undefined, function(tabs) {
-    for (var i = 0, tab; tab = tabs[i]; i++) {
-      if (tab.url && InboxUrl) {
-        chrome.tabs.update(tab.id, {selected: true});
-        return;
-      }
-    }
-    chrome.tabs.create({url: InboxUrl});
-  });
+// chrome.tabs.getAllInWindow(undefined, function(tabs) {
+//    for (var i = 0, tab; tab = tabs[i]; i++) {
+//      if (tab.url && InboxUrl) {
+//        chrome.tabs.update(tab.id, {selected: true});
+ //       return;
+//      }
+//    }
+    chrome.tabs.create( {url: "http://forum.searchengines.ru/private.php"});
 }
+// Called when the user clicks on the browser action.
+chrome.browserAction.onClicked.addListener(function(tab) {
+  goToInbox();
+});
+
 	</script>
 </head>
 <body onload="init()">

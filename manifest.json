@@ -7,6 +7,6 @@
 		"default_title": "Личные сообщения"
 	},
 	"permissions": [
-	"cookies", "tabs", "http://*.searchengines.ru/*"
+	"cookies", "tabs", "http://forum.searchengines.ru/"
 	]
 }

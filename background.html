@@ -1,7 +1,7 @@
 <html>
 <head>
 	<script>
-var pollInterval = 1000*600; //10 min
+var pollInterval = 1000*300; //10 min
 var requestTimeout = 1000*2; //5 sec
 var InboxUrl = "http://forum.searchengines.ru/private.php";
 var requestTimerId;
@@ -15,14 +15,8 @@ function init() {
   chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
   chrome.browserAction.setIcon({path: "unread_icon.png"});
 
-  getInboxcount();
-}
-
-function scheduleRequest() {
-  if (requestTimerId) {
-    window.clearTimeout(requestTimerId);
-  }
-  requestTimerId = window.setTimeout(getInboxcount, pollInterval);
+//  getInboxcount();
+  setInterval(getInboxcount(), 300000);
 }
 
 function getInboxcount() {

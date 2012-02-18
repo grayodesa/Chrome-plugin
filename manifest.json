@@ -1,6 +1,7 @@
 {
-	"name": "Личные сообщения",
-	"version": "1",
+	"name": "Личные сообщения на форуме Searchengines.ru",
+	"description": "Показывает количество непрочтенных личных сообщений в аккаунте на форуме Searchengines.ru",
+	"version": "0.1",
 	"background_page": "background.html",
 	"browser_action": {
 		"default_icon": "unread_icon.png",

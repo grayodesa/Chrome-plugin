@@ -29,6 +29,9 @@ xmlhttp.onreadystatechange = function() {
      if(xmlhttp.status == 200 && xmlhttp.responseText != "") {
         unread_count = xmlhttp.responseText;
          }
+         if (unread_count == "0") {
+          unread_count = "";
+         };
          chrome.browserAction.setBadgeText ({text: unread_count});
   }
 };

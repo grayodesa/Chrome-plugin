@@ -4,7 +4,7 @@
 	"background_page": "background.html",
 	"browser_action": {
 		"default_icon": "unread_icon.png",
-		"default_title": "Личные сообщения"
+		"default_title": "Личные сообщения на Searchengines.ru"
 	},
 	"permissions": [
 	"cookies", "tabs", "http://forum.searchengines.ru/"
